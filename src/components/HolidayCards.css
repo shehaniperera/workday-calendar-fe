@@ -1,0 +1,190 @@
+/* components/HolidayCards.css */
+.holiday-cards {
+  width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.holiday-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 700px;
+  margin: 0 auto;
+}
+
+.holiday-form input,
+.holiday-form button {
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.add-btn {
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #4a3bff;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.fixed-holidays,
+.recurring-holidays {
+  width: 48%;
+}
+
+.holiday-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.holiday-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  background-color: #f4f4f4;
+}
+
+.fixed-holidays h3,
+.recurring-holidays h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.fixed-holidays .holiday-card,
+.recurring-holidays .holiday-card {
+  margin-top: 10px;
+}
+
+.fixed-holiday {
+  background-color: #7ae07e !important;
+  color: white;
+}
+
+.recurring-holiday {
+  background-color: #2bd0e5 !important;
+  color: white;
+}
+
+.fixed-holiday:hover {
+  background-color: #6bcf6b;
+}
+
+.recurring-holiday:hover {
+  background-color: #26a9b7;
+}
+
+.holiday-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-transform: capitalize;
+  margin-bottom: 5px;
+}
+
+.holiday-date {
+  font-size: 16px;
+  color: #777;
+}
+
+a {
+  color: #6c63ff;
+  text-decoration: none;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.loading-text,
+.error-text {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+  margin-top: 50px;
+}
+/* Optional custom styles */
+select {
+  width: 100%;
+  height: 150px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+select:focus {
+  border-color: #007bff;
+}
+
+h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px 0;
+}
+
+
+/* styles.css or your existing CSS file */
+.resultContainer {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow for better depth */
+  text-align: center; /* Centers the content inside the container */
+}
+
+.resultText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #007bff;
+  line-height: 1.6; /* Adds better readability */
+  margin: 0;
+  font-family: 'Arial', sans-serif; /* cleaner font */
+  word-wrap: break-word; /* Ensure long words wrap properly */
+}
+
+.resultText span {
+  font-weight: bold;
+  color: #007BFF; /* Blue color for emphasis */
+}

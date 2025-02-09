@@ -1,0 +1,98 @@
+/* src/components/HolidayCalendar.css */
+.calendar-container {
+    text-align: center;
+    margin: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h2 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .calendar-wrapper {
+    display: inline-block;
+    margin: 20px;
+  }
+  
+  .react-calendar {
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 10px;
+  }
+  
+  .react-calendar__tile {
+    position: relative;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .react-calendar__tile:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .recurring-holiday {
+    background-color: #d39941; /* Light yellow for recurring holidays */
+    color: #333;
+  }
+  
+  .fixed-holiday {
+    background-color: #80e683; /* Green for fixed holidays */
+    color: #fff;
+  }
+  
+  .holiday-name {
+    font-size: 10px;
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    text-align: center;
+  }
+  
+  .holiday-list {
+    margin-top: 30px;
+    text-align: left;
+  }
+  
+  .holiday-list h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .holiday-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .holiday-list li {
+    font-size: 16px;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+  }
+  
+  .holiday-list .recurring-holiday {
+    background-color: #ffb84d;
+  }
+  
+  .holiday-list .fixed-holiday {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .calendar-wrapper {
+      width: 100%;
+    }
+  }
