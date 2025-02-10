@@ -2,7 +2,8 @@
 
 Holiday List UI
 
-![image](https://github.com/user-attachments/assets/10cbbabd-c4e9-4bc3-90e0-a07c13d446e1)
+![image](https://github.com/user-attachments/assets/1c77ddea-d002-4753-ad43-c1fe72a3a31c)
+
 
 Add Holiday UI
 
