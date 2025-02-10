@@ -5,17 +5,17 @@ import './HolidayCalendar.css';
 import { Link } from 'react-router-dom';
 
 const HolidayCalendar = () => {
-  // States to store holidays, loading, and error status
+ 
   const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch holidays from the API on component mount
+  // get holidays
   useEffect(() => {
     axios
       .get('/api/Holiday/GetHolidays')
       .then(response => {
-        setHolidays(response?.data?.result); // Assuming API returns an array of holidays
+        setHolidays(response?.data?.result); 
         setLoading(false);
       })
       .catch(err => {
@@ -24,11 +24,10 @@ const HolidayCalendar = () => {
       });
   }, []);
 
-  // Function to assign classes to tiles based on whether the date is a holiday
   const tileClassName = ({ date, view }) => {
     if (view === 'month') {
       const holiday = holidays.find((holiday) => {
-        const holidayDate = new Date(holiday.date); // Convert string to Date
+        const holidayDate = new Date(holiday.date);
         return (
           holidayDate.getDate() === date.getDate() &&
           holidayDate.getMonth() === date.getMonth() &&
@@ -42,11 +41,10 @@ const HolidayCalendar = () => {
     return null;
   };
 
-  // Add content to each tile to show holiday names
   const tileContent = ({ date, view }) => {
     if (view === 'month') {
       const holiday = holidays.find((holiday) => {
-        const holidayDate = new Date(holiday.date); // Convert string to Date
+        const holidayDate = new Date(holiday.date); 
         return (
           holidayDate.getDate() === date.getDate() &&
           holidayDate.getMonth() === date.getMonth() &&
@@ -55,13 +53,13 @@ const HolidayCalendar = () => {
       });
 
       if (holiday) {
-        return <span className="holiday-name">{holiday.name}</span>; // Display holiday name
+        return <span className="holiday-name">{holiday.name}</span>; 
       }
     }
     return null;
   }
 
-  // Show loading or error states if applicable
+  // loading or error
   if (loading) {
     return <div>Loading holidays...</div>;
   }
@@ -75,8 +73,8 @@ const HolidayCalendar = () => {
       <h2>Holiday Calendar</h2>
       <div className="calendar-wrapper">
         <Calendar
-          tileClassName={tileClassName} // Apply different classes for recurring and fixed holidays
-          tileContent={tileContent} // Show holiday names on the calendar tiles
+          tileClassName={tileClassName} 
+          tileContent={tileContent} 
         />
       </div>
       

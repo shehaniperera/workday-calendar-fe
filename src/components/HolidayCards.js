@@ -17,14 +17,13 @@ const HolidayCards = () => {
       const newHoliday = {
         name: holidayName,
         date: new Date(holidayDate),
-        recurring: recurringHoliday,
+        isrecurring: recurringHoliday,
       };
 
       try {
-        // Sending the holiday data to the backend API
+        // add holiday
         const response = await axios.post('api/Holiday/AddHoliday', newHoliday);
         if (response.status === 200) {
-          // If the request is successful, add the holiday to the local state
           setHolidays([...holidays, newHoliday]);
           setMessage('Holiday added successfully!');
           setIsSuccess(true);
@@ -34,7 +33,6 @@ const HolidayCards = () => {
           setRecurringHoliday(false);
         }
       } catch (error) {
-        // If there’s an error, display an error message
         setMessage('Failed to add holiday. Please try again!');
         setIsSuccess(false);
       }

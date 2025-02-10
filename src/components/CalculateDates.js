@@ -16,11 +16,11 @@ const HolidayCards = () => {
   const [result, setResult] = useState('');
 
 
-  // Fetch holidays from the API on component mount
+  // get holidays
   useEffect(() => {
     axios.get('/api/Holiday/GetHolidays')
       .then(response => {
-        setHolidays(response?.data); // Assuming API returns an array of holidays
+        setHolidays(response?.data);
         setLoading(false);
       })
       .catch(err => {
@@ -39,15 +39,15 @@ const HolidayCards = () => {
     };
 
     try {
-      // Sending the holiday data to the backend API
+      // calculate work day
       const response = await axios.post('/api/Workday/CalculateWorkDay', calculatedWorkDay);
       if (response?.status === 200) {
         setResult(response?.data?.result);
         setIsSuccess(true);
       }
     } catch (error) {
-      // If there’s an error, display an error message
-      setMessage('Failed to add holiday. Please try again!');
+      // error
+      setMessage('Failed to calculate work day. Please try again!');
       setIsSuccess(false);
     }
   };

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaCalendarCheck, FaCalendarAlt } from 'react-icons/fa'; // Import icons
+import { FaCalendarCheck, FaCalendarAlt, FaTrashAlt } from 'react-icons/fa'; // Import trash icon
 import './HolidayList.css';
-import { Link } from 'react-router-dom'; // Import Link for navigation
+import { Link } from 'react-router-dom';
 
 const HolidayList = () => {
   const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+   const [message, setMessage] = useState('');
+   const [isSuccess, setIsSuccess] = useState(false);
 
-  // Fetch holidays from the API on component mount
+  // get holidays
   useEffect(() => {
     axios.get('/api/Holiday/GetHolidays')
       .then(response => {
@@ -21,6 +23,30 @@ const HolidayList = () => {
         setLoading(false);
       });
   }, []);
+
+  // deleting a holiday
+  const deleteHoliday = (holidayId) => {
+    axios.delete(`/api/Holiday/DeleteHoliday?id=${holidayId}`)
+      .then(() => {
+        setHolidays(prevHolidays => {
+          if (prevHolidays && Array.isArray(prevHolidays.result)) {
+            return {
+              ...prevHolidays,
+              result: prevHolidays.result.filter(holiday => holiday.id !== holidayId), 
+              count: prevHolidays.count - 1 
+            };
+          }
+          return prevHolidays; 
+        });
+        setMessage('Holiday deleted successfully!');
+        setIsSuccess(true);
+      })
+      .catch(err => {
+        setError('Failed to delete holiday');
+        setMessage('Failed to delete holiday. Please try again!');
+        setIsSuccess(false);
+      });
+  };
 
   // Loading and error handling
   if (loading) {
@@ -37,19 +63,19 @@ const HolidayList = () => {
       <div className="cards-container">
         <div className="fixed-holidays">
           <Link to="/add-holiday">
-          <button className="action-button">Add Holiday</button>
-        </Link>
+            <button className="action-button">Add Holiday</button>
+          </Link>
         </div>
 
         <div className="recurring-holidays">
           <Link to="/calendar">
-          <button className="action-button">Holiday Calendar</button>
+            <button className="action-button">Holiday Calendar</button>
           </Link>
         </div>
 
         <div className="recurring-holidays">
           <Link to="/calculate">
-          <button className="action-button">Calculate Dates</button>
+            <button className="action-button">Calculate Dates</button>
           </Link>
         </div>
 
@@ -82,11 +108,26 @@ const HolidayList = () => {
               </span>
               <p className="holiday-name">{holiday?.name}</p>
               <p className="holiday-date">{new Date(holiday?.date)?.toDateString()}</p>
-              
+            </div>
+            <div className="holiday-delete">
+              <button
+                className="delete-button"
+                onClick={() => deleteHoliday(holiday?.id)}
+              >
+                <FaTrashAlt size={20} />
+              </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Display success or error message */}
+      {message && (
+        <div className={`message ${isSuccess ? 'success' : 'error'}`}>
+          {message}
+        </div>
+      )}
+
     </div>
   );
 };
