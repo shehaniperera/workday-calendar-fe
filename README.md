@@ -11,6 +11,9 @@ Add Holiday UI
 
 ![image](https://github.com/user-attachments/assets/5d1f02bc-7fb6-45c5-9d1f-6c56b6d75897)
 
+Delete Holiday UI
+
+![image](https://github.com/user-attachments/assets/40331ba9-c6cf-40f2-9064-aff1db68277f)
 
 
 Calculate Workday UI
