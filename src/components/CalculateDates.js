@@ -4,7 +4,7 @@ import axios from 'axios';
 import './HolidayCards.css';
 import Select from 'react-select';
 
-const HolidayCards = () => {
+const CalculateDates = () => {
   const [startDateTime, setStartDateTime] = useState('');
   const [workingDays, setWorkingDays] = useState('');
   const [holidays, setHolidays] = useState([]);
@@ -14,7 +14,6 @@ const HolidayCards = () => {
   const [error, setError] = useState('');
   const [selectedHolidays, setSelectedHolidays] = useState([]);
   const [result, setResult] = useState('');
-
 
   // get holidays
   useEffect(() => {
@@ -29,9 +28,7 @@ const HolidayCards = () => {
       });
   }, []);
 
-
   const handleAddHoliday = async () => {
-
     const calculatedWorkDay = {
       startDateTime,
       workingDays: parseFloat(workingDays),
@@ -46,7 +43,7 @@ const HolidayCards = () => {
         setIsSuccess(true);
       }
     } catch (error) {
-      // error
+       // error
       setMessage('Failed to calculate work day. Please try again!');
       setIsSuccess(false);
     }
@@ -61,14 +58,13 @@ const HolidayCards = () => {
   }
 
   const handleChange = (selected) => {
-
     const updatedSelectedOptions = selected.map(event => ({
+      id: event.value,
+      label: event.label,
       date: event.date,
       isRecurring: event.isRecurring
     }));
-
     setSelectedHolidays(updatedSelectedOptions);
-
   };
 
   const formattedOptions = holidays?.result?.map(event => ({
@@ -79,9 +75,7 @@ const HolidayCards = () => {
   }));
 
   return (
-
     <div className="holiday-cards">
-
       <div className="holiday-form">
         <h4>Start Date and Time</h4>
         <input
@@ -110,40 +104,43 @@ const HolidayCards = () => {
         </button>
       </div>
 
-      {/* Display success or error message */}
       {message && (
         <div className={`message ${isSuccess ? 'success' : 'error'}`}>
           {message}
         </div>
       )}
 
-      {
-        result && (
-          <div className="resultContainer">
-            <p className="resultText" dangerouslySetInnerHTML={{ __html: result }} />
-          </div>
-        )
-      }
+      {result && (
+        <div className="resultContainer">
+          <p className="resultText" dangerouslySetInnerHTML={{ __html: result }} />
+        </div>
+      )}
 
+      <div className="selected-holidays">
+        {selectedHolidays.length > 0 && (
+          <div>
+            <h4>Selected Holidays:</h4>
+            <ul>
+              {selectedHolidays.map(holiday => (
+                <li key={holiday.id}>
+                  <span>{holiday.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
 
       <div className="cards-container">
         <div className="fixed-holidays">
-          <Link to="/">
-            Holiday List
-          </Link>
+          <Link to="/">Holiday List</Link>
         </div>
-
         <div className="recurring-holidays">
-          <Link to="/calculate">
-            Calculate Dates
-          </Link>
+          <Link to="/calculate">Calculate Dates</Link>
         </div>
       </div>
-
-
-
     </div>
   );
 };
 
-export default HolidayCards;
+export default CalculateDates;
